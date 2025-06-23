@@ -265,6 +265,15 @@ static inline int xNextIntJ(Xoroshiro *xr, uint32_t n)
     return val;
 }
 
+static inline void xSetDecoratorSeed(Xoroshiro* xr, uint64_t world_seed, int x, int z, int salt)
+{
+    xSetSeed(xr, world_seed);
+    uint64_t a = xNextLongJ(xr) | 1ULL;
+    uint64_t b = xNextLongJ(xr) | 1ULL;
+    uint64_t popseed = (a*x + b*z) ^ world_seed;
+    xSetSeed(xr, popseed + salt);
+}
+
 
 //==============================================================================
 //                              MC Seed Helpers
