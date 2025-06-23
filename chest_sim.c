@@ -155,12 +155,10 @@ int countChests(Xoroshiro* xrand)
     xSkipN(xrand, 4);
     xNextIntJ(xrand, 100);
     xNextIntJ(xrand, 100);
-    ;
     if (xNextIntJ(xrand, 4) != 0) xSkipN(xrand, 2);
     xSkipN(xrand, 8);
     #pragma unroll
     for (int i = 0; i < 2; i++) xNextIntJ(xrand, 100);
-    ;
     xSkipN(xrand, 45);
     if (xNextIntJ(xrand, 4) != 0) xSkipN(xrand, 2);
     xSkipN(xrand, 8);
