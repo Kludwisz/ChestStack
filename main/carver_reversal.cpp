@@ -1,21 +1,7 @@
-#include <chrono>
-#include <stdio.h>
-#include "rng.h"
+#include "carver_reversal.h"
 
-typedef struct ReversalParams ReversalParams;
-struct ReversalParams {
-    uint64_t carver_seed;
-    int x;
-    int z;
-};
 
-typedef struct ReversalOutput ReversalOutput;
-struct ReversalOutput {
-    uint64_t results[32];
-    int resultCount;
-};
-
-void lift(uint64_t value, int bit, const ReversalParams* params, ReversalOutput* out) {
+static void lift(uint64_t value, int bit, const ReversalParams* params, ReversalOutput* out) {
     const uint64_t target_carver = params->carver_seed;
     const uint64_t partial_carver = getCarverSeed(value, params->x, params->z);
 
@@ -50,6 +36,7 @@ void reverseCarverSeed(uint64_t carver_seed, int x, int z, ReversalOutput* out) 
     }
 }
 
+/*
 extern int countChests(Xoroshiro*);
 
 void process_result(uint64_t structure_seed, int x, int z) {
@@ -83,3 +70,4 @@ int main() {
     //double sec = (t1 - t0).count() * 1e-9;
     //printf("%f seconds\n", sec);
 }
+*/

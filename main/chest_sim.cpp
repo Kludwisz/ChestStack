@@ -1,5 +1,4 @@
-#include "rng.h"
-#include <stdio.h>
+#include "chest_sim.h"
 
 //#define CHEST_SKIP if (xNextIntJ(xrand, 100) == 0) {xSkipN(xrand, 3); printf("%d: chest skipped\n", __LINE__);}
 //#define CHEST_OP {counter++; xSkipN(xrand, 1); printf("%d: lootseed=%lld\n", __LINE__, xNextLongJ(xrand));}
@@ -281,7 +280,7 @@ int countChests(Xoroshiro* xrand)
     return counter;
 }
 
-
+/*
 // Code testing
 int main2()
 {
@@ -311,3 +310,4 @@ void main3()
         }
     }
 }
+*/
