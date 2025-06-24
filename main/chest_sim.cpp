@@ -1,8 +1,10 @@
 #include "rng.h"
 #include <stdio.h>
 
-#define CHEST_OP {counter++; xSkipN(xrand, 1); printf("lootseed=%lld\n", xNextLongJ(xrand));}
-//#define CHEST_OP {counter++; xSkipN(xrand, 3);}
+//#define CHEST_SKIP if (xNextIntJ(xrand, 100) == 0) {xSkipN(xrand, 3); printf("%d: chest skipped\n", __LINE__);}
+//#define CHEST_OP {counter++; xSkipN(xrand, 1); printf("%d: lootseed=%lld\n", __LINE__, xNextLongJ(xrand));}
+#define CHEST_SKIP {if (xNextIntJ(xrand, 100) == 0) xSkipN(xrand, 3);}
+#define CHEST_OP {counter++; xSkipN(xrand, 3);}
 
 int countChests(Xoroshiro* xrand)
 {
@@ -12,7 +14,7 @@ int countChests(Xoroshiro* xrand)
     if (xNextIntJ(xrand, 4) != 0) xSkipN(xrand, 2);
     xSkipN(xrand, 8);
     #pragma unroll
-    for (int i = 0; i < 2; i++) if (xNextIntJ(xrand, 100) == 0) xSkipN(xrand, 3);
+    for (int i = 0; i < 2; i++) CHEST_SKIP
     if (xNextIntJ(xrand, 4) != 0) xSkipN(xrand, 2);
     xSkipN(xrand, 4);
     if (xNextIntJ(xrand, 100) == 0) CHEST_OP // COLUMN CHEST!
@@ -21,36 +23,36 @@ int countChests(Xoroshiro* xrand)
     #pragma unroll
     for (int i = 0; i < 2; i++) xNextIntJ(xrand, 100);
     xSkipN(xrand, 4);
-    if (xNextIntJ(xrand, 100) == 0) xSkipN(xrand, 3);
+    CHEST_SKIP
     xNextIntJ(xrand, 100);
     xSkipN(xrand, 4);
     if (xNextIntJ(xrand, 100) == 0) CHEST_OP // COLUMN CHEST!
     xNextIntJ(xrand, 100);
     xSkipN(xrand, 3);
-    if (xNextIntJ(xrand, 100) == 0) xSkipN(xrand, 3);
+    CHEST_SKIP
     xNextIntJ(xrand, 100);
     xSkipN(xrand, 30);
     if (xNextIntJ(xrand, 4) != 0) xSkipN(xrand, 2);
     xSkipN(xrand, 8);
     #pragma unroll
-    for (int i = 0; i < 2; i++) if (xNextIntJ(xrand, 100) == 0) xSkipN(xrand, 3);
+    for (int i = 0; i < 2; i++) CHEST_SKIP
     if (xNextIntJ(xrand, 4) != 0) xSkipN(xrand, 2);
     xSkipN(xrand, 4);
-    if (xNextIntJ(xrand, 100) == 0) xSkipN(xrand, 3);
+    CHEST_SKIP
     xNextIntJ(xrand, 100);
     xSkipN(xrand, 15);
     if (xNextIntJ(xrand, 4) != 0) xSkipN(xrand, 2);
     xSkipN(xrand, 4);
-    if (xNextIntJ(xrand, 100) == 0) xSkipN(xrand, 3);
+    CHEST_SKIP
     xNextIntJ(xrand, 100);
     xSkipN(xrand, 60);
     if (xNextIntJ(xrand, 4) != 0) xSkipN(xrand, 2);
     xSkipN(xrand, 8);
     #pragma unroll
-    for (int i = 0; i < 2; i++) if (xNextIntJ(xrand, 100) == 0) xSkipN(xrand, 3);
+    for (int i = 0; i < 2; i++) CHEST_SKIP
     if (xNextIntJ(xrand, 4) != 0) xSkipN(xrand, 2);
     xSkipN(xrand, 4);
-    if (xNextIntJ(xrand, 100) == 0) xSkipN(xrand, 3);
+    CHEST_SKIP
     #pragma unroll
     for (int i = 0; i < 5; i++) xNextIntJ(xrand, 100);
     xSkipN(xrand, 60);
@@ -58,23 +60,23 @@ int countChests(Xoroshiro* xrand)
     for (int i = 0; i < 6; i++) xNextIntJ(xrand, 100);
     xSkipN(xrand, 4);
     xNextIntJ(xrand, 100);
-    if (xNextIntJ(xrand, 100) == 0) xSkipN(xrand, 3);
+    CHEST_SKIP
     xSkipN(xrand, 49);
     xNextIntJ(xrand, 100);
-    if (xNextIntJ(xrand, 100) == 0) xSkipN(xrand, 3);
+    CHEST_SKIP
     xSkipN(xrand, 2);
     #pragma unroll
     for (int i = 0; i < 4; i++) xNextIntJ(xrand, 100);
     xSkipN(xrand, 23);
     if (xNextIntJ(xrand, 4) != 0) xSkipN(xrand, 2);
     xSkipN(xrand, 4);
-    if (xNextIntJ(xrand, 100) == 0) xSkipN(xrand, 3);
+    CHEST_SKIP
     xNextIntJ(xrand, 100);
     xSkipN(xrand, 30);
     if (xNextIntJ(xrand, 4) != 0) xSkipN(xrand, 2);
     xSkipN(xrand, 8);
     #pragma unroll
-    for (int i = 0; i < 2; i++) if (xNextIntJ(xrand, 100) == 0) xSkipN(xrand, 3);
+    for (int i = 0; i < 2; i++) CHEST_SKIP
     if (xNextIntJ(xrand, 4) != 0) xSkipN(xrand, 2);
     xSkipN(xrand, 4);
     if (xNextIntJ(xrand, 100) == 0) CHEST_OP // COLUMN CHEST!
@@ -83,10 +85,10 @@ int countChests(Xoroshiro* xrand)
     if (xNextIntJ(xrand, 4) != 0) xSkipN(xrand, 2);
     xSkipN(xrand, 8);
     #pragma unroll
-    for (int i = 0; i < 2; i++) if (xNextIntJ(xrand, 100) == 0) xSkipN(xrand, 3);
+    for (int i = 0; i < 2; i++) CHEST_SKIP
     if (xNextIntJ(xrand, 4) != 0) xSkipN(xrand, 2);
     xSkipN(xrand, 4);
-    if (xNextIntJ(xrand, 100) == 0) CHEST_OP
+    CHEST_SKIP
     #pragma unroll
     for (int i = 0; i < 5; i++) xNextIntJ(xrand, 100);
     xSkipN(xrand, 68);
@@ -95,21 +97,21 @@ int countChests(Xoroshiro* xrand)
     if (xNextIntJ(xrand, 4) != 0) xSkipN(xrand, 2);
     xSkipN(xrand, 4);
     xNextIntJ(xrand, 100);
-    if (xNextIntJ(xrand, 100) == 0) xSkipN(xrand, 3);
+    CHEST_SKIP
     xSkipN(xrand, 48);
     if (xNextIntJ(xrand, 4) != 0) xSkipN(xrand, 2);
     xSkipN(xrand, 6);
     #pragma unroll
-    for (int i = 0; i < 2; i++) if (xNextIntJ(xrand, 100) == 0) xSkipN(xrand, 3);
+    for (int i = 0; i < 2; i++) CHEST_SKIP
     #pragma unroll
     for (int i = 0; i < 4; i++) xNextIntJ(xrand, 100);
     xSkipN(xrand, 30);
     if (xNextIntJ(xrand, 4) != 0) xSkipN(xrand, 2);
     xSkipN(xrand, 8);
     #pragma unroll
-    for (int i = 0; i < 2; i++) if (xNextIntJ(xrand, 100) == 0) xSkipN(xrand, 3);
+    for (int i = 0; i < 2; i++) CHEST_SKIP
     xSkipN(xrand, 4);
-    if (xNextIntJ(xrand, 100) == 0) xSkipN(xrand, 3);
+    CHEST_SKIP
     xNextIntJ(xrand, 100);
     xSkipN(xrand, 52);
     if (xNextIntJ(xrand, 4) != 0) xSkipN(xrand, 2);
@@ -121,38 +123,38 @@ int countChests(Xoroshiro* xrand)
     if (xNextIntJ(xrand, 4) != 0) xSkipN(xrand, 2);
     xSkipN(xrand, 4);
     xNextIntJ(xrand, 100);
-    if (xNextIntJ(xrand, 100) == 0) xSkipN(xrand, 3);
+    CHEST_SKIP
     xSkipN(xrand, 18);
     if (xNextIntJ(xrand, 4) != 0) xSkipN(xrand, 2);
     xSkipN(xrand, 6);
     #pragma unroll
-    for (int i = 0; i < 2; i++) if (xNextIntJ(xrand, 100) == 0) xSkipN(xrand, 3);
+    for (int i = 0; i < 2; i++) CHEST_SKIP
     xSkipN(xrand, 18);
-    if (xNextIntJ(xrand, 100) == 0) xSkipN(xrand, 3);
+    CHEST_SKIP
     xNextIntJ(xrand, 100);
     xSkipN(xrand, 45);
     if (xNextIntJ(xrand, 4) != 0) xSkipN(xrand, 2);
     xSkipN(xrand, 8);
     #pragma unroll
-    for (int i = 0; i < 2; i++) if (xNextIntJ(xrand, 100) == 0) xSkipN(xrand, 3);
+    for (int i = 0; i < 2; i++) CHEST_SKIP
     xSkipN(xrand, 4);
-    if (xNextIntJ(xrand, 100) == 0) xSkipN(xrand, 3);
+    CHEST_SKIP
     #pragma unroll
     for (int i = 0; i < 3; i++) xNextIntJ(xrand, 100);
     xSkipN(xrand, 15);
     if (xNextIntJ(xrand, 4) != 0) xSkipN(xrand, 2);
     xSkipN(xrand, 6);
     #pragma unroll
-    for (int i = 0; i < 2; i++) if (xNextIntJ(xrand, 100) == 0) xSkipN(xrand, 3);
+    for (int i = 0; i < 2; i++) CHEST_SKIP
     xSkipN(xrand, 60);
     #pragma unroll
     for (int i = 0; i < 4; i++) xNextIntJ(xrand, 100);
     xSkipN(xrand, 2);
     xNextIntJ(xrand, 100);
-    if (xNextIntJ(xrand, 100) == 0) xSkipN(xrand, 3);
+    CHEST_SKIP
     xSkipN(xrand, 4);
     xNextIntJ(xrand, 100);
-    if (xNextIntJ(xrand, 100) == 0) xSkipN(xrand, 3);
+    CHEST_SKIP
     xSkipN(xrand, 135);
     #pragma unroll
     for (int i = 0; i < 2; i++) xNextIntJ(xrand, 100);
@@ -167,11 +169,11 @@ int countChests(Xoroshiro* xrand)
     if (xNextIntJ(xrand, 4) != 0) xSkipN(xrand, 2);
     xSkipN(xrand, 8);
     #pragma unroll
-    for (int i = 0; i < 2; i++) if (xNextIntJ(xrand, 100) == 0) xSkipN(xrand, 3);
+    for (int i = 0; i < 2; i++) CHEST_SKIP
     if (xNextIntJ(xrand, 4) != 0) xSkipN(xrand, 2);
     xSkipN(xrand, 8);
     #pragma unroll
-    for (int i = 0; i < 2; i++) if (xNextIntJ(xrand, 100) == 0) xSkipN(xrand, 3);
+    for (int i = 0; i < 2; i++) CHEST_SKIP
     if (xNextIntJ(xrand, 4) != 0) xSkipN(xrand, 2);
     xSkipN(xrand, 4);
     if (xNextIntJ(xrand, 100) == 0) CHEST_OP // COLUMN CHEST!
@@ -182,19 +184,19 @@ int countChests(Xoroshiro* xrand)
     if (xNextIntJ(xrand, 4) != 0) xSkipN(xrand, 2);
     xSkipN(xrand, 4);
     xNextIntJ(xrand, 100);
-    if (xNextIntJ(xrand, 100) == 0) xSkipN(xrand, 3);
+    CHEST_SKIP
     xSkipN(xrand, 45);
     #pragma unroll
     for (int i = 0; i < 4; i++) xNextIntJ(xrand, 100);
     if (xNextIntJ(xrand, 4) != 0) xSkipN(xrand, 2);
     xSkipN(xrand, 4);
     xNextIntJ(xrand, 100);
-    if (xNextIntJ(xrand, 100) == 0) xSkipN(xrand, 3);
+    CHEST_SKIP
     xSkipN(xrand, 60);
     if (xNextIntJ(xrand, 4) != 0) xSkipN(xrand, 2);
     xSkipN(xrand, 8);
     #pragma unroll
-    for (int i = 0; i < 2; i++) if (xNextIntJ(xrand, 100) == 0) xSkipN(xrand, 3);
+    for (int i = 0; i < 2; i++) CHEST_SKIP
     xSkipN(xrand, 2);
     #pragma unroll
     for (int i = 0; i < 6; i++) xNextIntJ(xrand, 100);
@@ -211,24 +213,24 @@ int countChests(Xoroshiro* xrand)
     #pragma unroll
     for (int i = 0; i < 2; i++) xNextIntJ(xrand, 100);
     xSkipN(xrand, 64);
-    if (xNextIntJ(xrand, 100) == 0) xSkipN(xrand, 3);
+    CHEST_SKIP
     #pragma unroll
     for (int i = 0; i < 7; i++) xNextIntJ(xrand, 100);
     xSkipN(xrand, 60);
     if (xNextIntJ(xrand, 4) != 0) xSkipN(xrand, 2);
     xSkipN(xrand, 8);
     #pragma unroll
-    for (int i = 0; i < 2; i++) if (xNextIntJ(xrand, 100) == 0) xSkipN(xrand, 3);
+    for (int i = 0; i < 2; i++) CHEST_SKIP
     if (xNextIntJ(xrand, 4) != 0) xSkipN(xrand, 2);
     xSkipN(xrand, 4);
-    if (xNextIntJ(xrand, 100) == 0) xSkipN(xrand, 3);
+    CHEST_SKIP
     #pragma unroll
     for (int i = 0; i < 5; i++) xNextIntJ(xrand, 100);
     xSkipN(xrand, 45);
     if (xNextIntJ(xrand, 4) != 0) xSkipN(xrand, 2);
     xSkipN(xrand, 8);
     #pragma unroll
-    for (int i = 0; i < 2; i++) if (xNextIntJ(xrand, 100) == 0) xSkipN(xrand, 3);
+    for (int i = 0; i < 2; i++) CHEST_SKIP
     if (xNextIntJ(xrand, 4) != 0) xSkipN(xrand, 2);
     xSkipN(xrand, 4);
     if (xNextIntJ(xrand, 100) == 0) CHEST_OP // COLUMN CHEST!
@@ -236,17 +238,17 @@ int countChests(Xoroshiro* xrand)
     for (int i = 0; i < 3; i++) xNextIntJ(xrand, 100);
     xSkipN(xrand, 41);
     xNextIntJ(xrand, 100);
-    if (xNextIntJ(xrand, 100) == 0) xSkipN(xrand, 3);
+    CHEST_SKIP
     #pragma unroll
     for (int i = 0; i < 2; i++) xNextIntJ(xrand, 100);
     xSkipN(xrand, 19);
     xNextIntJ(xrand, 100);
-    if (xNextIntJ(xrand, 100) == 0) xSkipN(xrand, 3);
+    CHEST_SKIP
     xSkipN(xrand, 30);
     if (xNextIntJ(xrand, 4) != 0) xSkipN(xrand, 2);
     xSkipN(xrand, 6);
     #pragma unroll
-    for (int i = 0; i < 2; i++) if (xNextIntJ(xrand, 100) == 0) xSkipN(xrand, 3);
+    for (int i = 0; i < 2; i++) CHEST_SKIP
     #pragma unroll
     for (int i = 0; i < 2; i++) xNextIntJ(xrand, 100);
     xSkipN(xrand, 30);
@@ -259,16 +261,16 @@ int countChests(Xoroshiro* xrand)
     if (xNextIntJ(xrand, 4) != 0) xSkipN(xrand, 2);
     xSkipN(xrand, 6);
     #pragma unroll
-    for (int i = 0; i < 2; i++) if (xNextIntJ(xrand, 100) == 0) xSkipN(xrand, 3);
+    for (int i = 0; i < 2; i++) CHEST_SKIP
     #pragma unroll
     for (int i = 0; i < 2; i++) xNextIntJ(xrand, 100);
     xSkipN(xrand, 64);
     if (xNextIntJ(xrand, 4) != 0) xSkipN(xrand, 2);
     xSkipN(xrand, 8);
     #pragma unroll
-    for (int i = 0; i < 2; i++) if (xNextIntJ(xrand, 100) == 0) xSkipN(xrand, 3);
+    for (int i = 0; i < 2; i++) CHEST_SKIP
     xSkipN(xrand, 4);
-    if (xNextIntJ(xrand, 100) == 0) xSkipN(xrand, 3);
+    CHEST_SKIP
     #pragma unroll
     for (int i = 0; i < 5; i++) xNextIntJ(xrand, 100);
     xSkipN(xrand, 45);
@@ -281,18 +283,19 @@ int countChests(Xoroshiro* xrand)
 
 
 // Code testing
-void main()
+int main()
 {
-    uint64_t seed = -735425800071185585LL;
-    int x = 19;
-    int z = 8;
+    //CHEST !!! Pos{x=-450, y=-19, z=-189}
+    uint64_t seed = 576920672342937203LL;
+    int x = -29;
+    int z = -12;
 
     Xoroshiro xr;
     xSetDecoratorSeed(&xr, seed, x<<4, z<<4, 30001);
     countChests(&xr);
 }
 
-void main2()
+void main3()
 {
     uint64_t structseed = 68314073758543ULL;
     int x = 19;

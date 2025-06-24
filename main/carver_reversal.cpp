@@ -1,36 +1,3 @@
-/*
-public static List<Long> reverse(long carverSeed, int x, int z, ChunkRand rand, MCVersion version) {
-    ArrayList<Long> result = new ArrayList<>();
-    LongUnaryOperator carverHash = value -> rand.setCarverSeed(value, x, z, version);
-
-    int freeBits = Long.numberOfTrailingZeros(x | z);
-    long c = Mth.mask(carverSeed, freeBits);
-
-    if(freeBits >= 16) {
-        Hensel.lift(c, freeBits - 16, carverSeed, 32, 16, carverHash, result);
-    } else {
-        for(int increment = (int)Mth.getPow2(freeBits); c < 1L << 16; c += increment) {
-            Hensel.lift(c, 0, carverSeed, 32, 16, carverHash, result);
-        }
-    }
-
-    return result;
-}
-
-public static <T extends Collection<Long>> T lift(long value, int bit, long target, int bits, int offset, LongUnaryOperator hash, T result) {
-    if(bit >= bits) {
-        if(Mth.mask(target, bit + offset) == Mth.mask(hash.applyAsLong(value), bit + offset)) {
-            result.add(value);
-        }
-    } else if(Mth.mask(target, bit) == Mth.mask(hash.applyAsLong(value), bit)) {
-        lift(value, bit + 1, target, bits, offset, hash, result);
-        lift(value | Mth.getPow2(bit + offset), bit + 1, target, bits, offset, hash, result);
-    }
-
-    return result;
-}
-*/
-
 #include <chrono>
 #include <stdio.h>
 #include "rng.h"
@@ -83,24 +50,36 @@ void reverseCarverSeed(uint64_t carver_seed, int x, int z, ReversalOutput* out) 
     }
 }
 
+extern int countChests(Xoroshiro*);
+
+void process_result(uint64_t structure_seed, int x, int z) {
+    for (uint64_t u = 0; u < 65536U; u++) {
+        uint64_t worldseed = structure_seed | (u << 48);
+        Xoroshiro xr;
+        xSetDecoratorSeed(&xr, worldseed, x<<4, (z-1)<<4, 30001);
+        int c = countChests(&xr);
+        if (c >= 4) {
+            printf("%lld : %d   /tp %d 0 %d\n", worldseed, c, x*16 + 7, z*16 - 15 + 128);
+        }
+    }
+}
+
 int main() {
-    uint64_t a = 3;
-    int c = 6325;
-    int x = 12;
-    int z = 13;
+    //auto t0 = std::chrono::steady_clock::now();
 
-    auto t0 = std::chrono::steady_clock::now();
+    ReversalOutput out = { 0 };
 
-    for (uint64_t a = 1; a < 100; a++) {
-        ReversalOutput out = { 0 };
-        reverseCarverSeed(a, x, z, &out);
-
-        for (int i = 0; i < out.resultCount; i++) {
-            printf("%lld\n", out.results[i]);
+    for (int x = -30; x < 0; x++) {
+        printf("### x = %d\n", x);
+        for (int z = -30; z < 0; z++) {
+            out.resultCount = 0;
+            reverseCarverSeed(137099342588438ULL, x, z, &out);
+            for (int i = 0; i < out.resultCount; i++)
+                process_result(out.results[i], x, z);
         }
     }
 
-    auto t1 = std::chrono::steady_clock::now();
-    double sec = (t1 - t0).count() * 1e-9;
-    printf("%f seconds\n", sec);
+    //auto t1 = std::chrono::steady_clock::now();
+    //double sec = (t1 - t0).count() * 1e-9;
+    //printf("%f seconds\n", sec);
 }
