@@ -69,9 +69,9 @@ int main() {
 
     ReversalOutput out = { 0 };
 
-    for (int x = -30; x < 0; x++) {
+    for (int x = 10; x < 30; x++) {
         printf("### x = %d\n", x);
-        for (int z = -30; z < 0; z++) {
+        for (int z = 10; z < 30; z++) {
             out.resultCount = 0;
             reverseCarverSeed(137099342588438ULL, x, z, &out);
             for (int i = 0; i < out.resultCount; i++)

@@ -283,7 +283,7 @@ int countChests(Xoroshiro* xrand)
 
 
 // Code testing
-int main()
+int main2()
 {
     //CHEST !!! Pos{x=-450, y=-19, z=-189}
     uint64_t seed = 576920672342937203LL;
