@@ -41,7 +41,7 @@ void check_worldseeds(uint64_t structure_seed, int x, int z) {
 
         if (c >= MIN_CHESTS) {
             std::lock_guard<std::mutex> lock(result_mutex);
-            std::cout << worldseed << ' ' << c << ' ' << x << ' ' << z << '\n';
+            std::cout << worldseed << ' ' << c << ' ' << x << ' ' << (z-1) << '\n';
             std::cout << std::flush;
         }
     }
