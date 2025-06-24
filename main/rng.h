@@ -172,6 +172,24 @@ static inline void skipNextN(uint64_t *seed, uint64_t n)
     *seed &= 0xffffffffffffULL;
 }
 
+static inline void setCarverSeed(uint64_t *rand, uint64_t structure_seed, int x, int z)
+{
+    setSeed(rand, structure_seed);
+    uint64_t a = nextLong(rand);
+    uint64_t b = nextLong(rand);
+    uint64_t carver = a*x ^ b*z ^ structure_seed;
+    setSeed(rand, carver); 
+}
+
+static inline uint64_t getCarverSeed(uint64_t structure_seed, int x, int z)
+{
+    uint64_t rand = structure_seed ^ 0x5deece66dULL;
+    uint64_t a = nextLong(&rand);
+    uint64_t b = nextLong(&rand);
+    return a*x ^ b*z ^ structure_seed; 
+}
+
+
 
 ///=============================================================================
 ///                               Xoroshiro 128
