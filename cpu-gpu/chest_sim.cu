@@ -5,7 +5,7 @@
 #define CHEST_SKIP {if (xNextIntJ(xrand, 100) == 0) xSkipN(xrand, 3);}
 #define CHEST_OP {counter++; xSkipN(xrand, 3);}
 
-int countChests(Xoroshiro* xrand)
+__host__ __device__ int countChests(Xoroshiro* xrand)
 {
     int counter = 0;
 

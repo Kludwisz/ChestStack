@@ -1,8 +1,8 @@
 #ifndef CHEST_SIM_H
 #define CHEST_SIM_H
 
-#include "rng.h"
+#include "rng.cuh"
 
-int countChests(Xoroshiro* xrand);
+__host__ __device__ int countChests(Xoroshiro* xrand);
 
 #endif

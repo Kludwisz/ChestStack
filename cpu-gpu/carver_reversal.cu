@@ -1,7 +1,7 @@
 #include "carver_reversal.h"
 
 
-static void lift(uint64_t value, int bit, const ReversalParams* params, ReversalOutput* out) {
+__host__ __device__ void lift(uint64_t value, int bit, const ReversalParams* params, ReversalOutput* out) {
     const uint64_t target_carver = params->carver_seed;
     const uint64_t partial_carver = getCarverSeed(value, params->x, params->z);
 
@@ -20,7 +20,7 @@ static void lift(uint64_t value, int bit, const ReversalParams* params, Reversal
     }
 }
 
-void reverseCarverSeed(uint64_t carver_seed, int x, int z, ReversalOutput* out) {
+__host__ __device__ void reverseCarverSeed(uint64_t carver_seed, int x, int z, ReversalOutput* out) {
     const ReversalParams params = {carver_seed, x, z};
 
     int freeBits = __builtin_ctz(x | z);
