@@ -1,8 +1,12 @@
 /*
-This version of the checker runs the carver reversal on multiple CPU threads,
-and delegates worldseed checks to the GPU. Because carver reversal will usually be 
-the main bottleneck, this won't use the full potential of the GPU, but could be
-enough for machines with powerful CPUs and weak GPUs.
+This version of the checker runs two GPU processes and a CPU process as follows:
+- CPU carver reversal 
+- GPU worldseed bruteforce for results calculated by CPU
+- GPU carver reversal -> GPU worldseed bruteforce
+Its auto-tuning feature allows to maximize GPU usage over time by measuring
+how long the CPU had to wait for the GPU tasks to complete. Short time = we can 
+delegate more instances of the second job while the CPU is doing carver reversal.
+Long time = need to reduce GPU overhead because it can't keep up.
 */
 
 #include "chest_sim.cuh"
@@ -19,7 +23,7 @@ enough for machines with powerful CPUs and weak GPUs.
 // --------------------------------------------------------------------
 // global program params
 
-constexpr uint64_t CARVER_SEED = 137099342588438ULL;
+constexpr uint64_t CARVER_SEED = 123456789ULL;
 constexpr int MIN_CHESTS = 3;
 
 constexpr int BATCH_SIZE = 100;
