@@ -13,11 +13,12 @@
 // global program params
 
 constexpr uint64_t CARVER_SEED = 137099342588438ULL;
-constexpr int MIN_CHESTS = 4;
+constexpr int MIN_CHESTS = 5;
 
 constexpr int BATCH_SIZE = 100;
 constexpr int CHUNKS_ON_AXIS = 60'000'000 / 16;
 constexpr int TASKS_ON_AXIS = CHUNKS_ON_AXIS / BATCH_SIZE;
+constexpr int TASK_COORD_OFFSET = TASKS_ON_AXIS / 2;
 constexpr uint64_t MAX_TASK_ID = (uint64_t)TASKS_ON_AXIS * TASKS_ON_AXIS;
 
 // --------------------------------------------------------------------
@@ -46,7 +47,7 @@ void carver_reversal_worker(int x_min, int x_max, int z) {
         {
             std::lock_guard<std::mutex> lock(result_mutex);
             for (int i = 0; i < out.resultCount; i++)
-                carver_step_results.push_back({out.results[i], x, z});
+                carver_step_results.push_back({out.results[i], x, z-1});
         } 
     }
 }
@@ -128,8 +129,8 @@ int main(int argc, char* argv[]) {
         fprintf(stderr, "--- progress: %d / %d subtasks done\n", subtasks_done, subtasks_total);
 
         for (int i = 0; i < thread_count; i++) {
-            const int tx = (current_task / TASKS_ON_AXIS) * BATCH_SIZE;
-            const int tz = (current_task % TASKS_ON_AXIS) * BATCH_SIZE;
+            const int tx = (current_task / TASKS_ON_AXIS) * BATCH_SIZE - TASK_COORD_OFFSET * BATCH_SIZE;
+            const int tz = (current_task % TASKS_ON_AXIS) * BATCH_SIZE - TASK_COORD_OFFSET * BATCH_SIZE;
             threads.emplace_back(carver_reversal_worker, tx, tx + BATCH_SIZE, tz + current_task_z);
             current_task_z++;
 
