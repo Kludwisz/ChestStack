@@ -1,4 +1,4 @@
-#include "chest_sim.h"
+#include "chest_sim.cuh"
 
 //#define CHEST_SKIP if (xNextIntJ(xrand, 100) == 0) {xSkipN(xrand, 3); printf("%d: chest skipped\n", __LINE__);}
 //#define CHEST_OP {counter++; xSkipN(xrand, 1); printf("%d: lootseed=%lld\n", __LINE__, xNextLongJ(xrand));}

@@ -1,4 +1,4 @@
-#include "carver_reversal.h"
+#include "carver_reversal.cuh"
 
 
 __host__ __device__ void lift(uint64_t value, int bit, const ReversalParams* params, ReversalOutput* out) {

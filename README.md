@@ -14,4 +14,11 @@ then run with:
 `threads` is the number of threads to be used.
 
 ## CPU-GPU app
-Coming soon
+Total chunk area:<br>
+x:  -1'875'000 --- 1'875'000<br>
+z:  -1'875'000 --- 1'875'000<br>
+Divided into batches of 100x100 chunks:<br>
+bx: -18'750 --- 18'750<br>
+bz: -18'750 --- 18'750<br>
+Flattened batch id range:
+[0, 1'406'250'000]
