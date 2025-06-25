@@ -13,7 +13,7 @@
 // global program params
 
 constexpr uint64_t CARVER_SEED = 137099342588438ULL;
-constexpr int MIN_CHESTS = 5;
+constexpr int MIN_CHESTS = 3;
 
 constexpr int BATCH_SIZE = 100;
 constexpr int CHUNKS_ON_AXIS = 60'000'000 / 16;
@@ -34,21 +34,54 @@ struct Result {
 std::vector<Result> carver_step_results;
 std::mutex result_mutex;
 
-void reverse_carver(int x, int z, ReversalOutput& out) {
+static void reverse_carver(int x, int z, ReversalOutput& out) {
     reverseCarverSeedCPU(CARVER_SEED, x, z, &out);
 }
 
-void carver_reversal_worker(int x_min, int x_max, int z) {
+static void check_carver_result(Result res) {
+    // test for trial chambers generating in correct position
+    // -3 30 (feature) -> -1 31 (chunk) rotation = 3
+    // rotation = 1 BAD
+    // rotation = 2 BAD
+    // rotation = 0 BAD
+
+    // so we need trial chambers at feature_chunk + (2, 1) with rotation = 3
+
+    // check position
+    int tcx = res.chunk_x + 2;
+    int tcz = res.chunk_z + 1;
+    int rx = (int)std::floor(tcx / 34.0);
+    int rz = (int)std::floor(tcz / 34.0);
+
+    uint64_t rand = 0;
+    setRegionSeed(&rand, res.worldseed, rx, rz, 94251327);
+    int cx = rx * 34 + nextInt(&rand, 22);
+    int cz = rz * 34 + nextInt(&rand, 22);
+
+    if (cx != tcx || cz != tcz)
+        return;
+
+    // check rotation
+    setCarverSeed(&rand, res.worldseed, cx, cz);
+    nextInt(&rand, 21); // skip y
+    int rot = nextInt(&rand, 4);
+    if (rot != 3) 
+        return;
+
+    {
+        std::lock_guard<std::mutex> lock(result_mutex);
+        carver_step_results.push_back(res);
+    }
+}
+
+static void carver_reversal_worker(int x_min, int x_max, int z) {
     ReversalOutput out = { 0 };
 
     for (int x = x_min; x < x_max; ++x) {
         out.resultCount = 0;
         reverse_carver(x, z, out);
-        {
-            std::lock_guard<std::mutex> lock(result_mutex);
-            for (int i = 0; i < out.resultCount; i++)
-                carver_step_results.push_back({out.results[i], x, z-1});
-        } 
+        for (int i = 0; i < out.resultCount; i++)
+            check_carver_result({out.results[i], x, z-1});
     }
 }
 
@@ -59,7 +92,6 @@ constexpr int MAX_WORLDSEED_RESULTS = 64;
 __managed__ int worldseedResultCount = 0;
 __managed__ Result worldseedResults[MAX_WORLDSEED_RESULTS];
 
-extern __device__ int countChests(Xoroshiro*);
 __global__ void bruteforceWorldseeds(const uint64_t structure_seed, const int x, const int z) {
     uint64_t upper16 = blockIdx.x * blockDim.x + threadIdx.x;
     uint64_t worldseed = structure_seed | (upper16 << 48);
@@ -85,7 +117,7 @@ __host__ void launchBruteforce() {
 
 __host__ void processResults() {
     for (int i = 0; i < worldseedResultCount; i++) {
-        printf("%lld %d %d\n", worldseedResults[i].worldseed, worldseedResults[i].chunk_x, worldseedResults[i].chunk_z);
+        printf("%lld  /tp %d 0 %d\n", worldseedResults[i].worldseed, worldseedResults[i].chunk_x*16, worldseedResults[i].chunk_z*16 + 128);
     }
 }
 

@@ -116,6 +116,13 @@ __host__ __device__ static inline uint64_t getCarverSeed(uint64_t structure_seed
     return a*x ^ b*z ^ structure_seed; 
 }
 
+__host__ __device__ static inline void setRegionSeed(uint64_t* rand, uint64_t structure_seed, int rx, int rz, int salt)
+{
+    constexpr uint64_t REGION_SEED_A = 341873128712ULL;
+    constexpr uint64_t REGION_SEED_B = 132897987541ULL; 
+    setSeed(rand, rx * REGION_SEED_A + rz * REGION_SEED_B + structure_seed + salt);
+}
+
 
 
 ///=============================================================================
