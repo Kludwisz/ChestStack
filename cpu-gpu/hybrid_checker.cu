@@ -42,7 +42,7 @@ std::vector<Result> carver_step_results;
 std::mutex result_mutex;
 
 static void reverse_carver(int x, int z, ReversalOutput& out) {
-    reverseCarverSeedCPU(CARVER_SEED, x, z, &out);
+    reverseCarverSeed(CARVER_SEED, x, z, &out);
 }
 
 static void check_carver_result(Result res) {
@@ -114,7 +114,6 @@ __global__ void bruteforceWorldseeds(const uint64_t structure_seed, const int x,
 }
 
 __host__ void launchBruteforce() {
-    worldseedResultCount = 0;
     for (auto& result : carver_step_results) {
         bruteforceWorldseeds <<< 256, 256 >>> (result.worldseed, result.chunk_x, result.chunk_z);
     }
@@ -160,6 +159,7 @@ int main(int argc, char* argv[]) {
     int current_task = task_min;
     int current_task_z = 0;
     int subtasks_total = (task_max - task_min) * BATCH_SIZE;
+    int ix = 0;
 
     while (current_task < task_max) {
         std::vector<std::thread> threads;
@@ -184,13 +184,12 @@ int main(int argc, char* argv[]) {
             t.join();
         }
 
-        auto t0 = std::chrono::steady_clock::now();
-        CUDA_CHECK(cudaDeviceSynchronize());
-        auto t1 = std::chrono::steady_clock::now();
-        double msWaited = (t1 - t0).count() * 1e-6;
-        fprintf(stderr, "--- waited %f ms for GPU\n", msWaited);
+        if ((ix++ & 3) == 0) {
+            CUDA_CHECK(cudaDeviceSynchronize());
+            processResults();
+            worldseedResultCount = 0;
+        }
 
-        processResults();
         launchBruteforce();
     }
 

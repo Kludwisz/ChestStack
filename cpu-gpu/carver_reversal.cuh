@@ -36,23 +36,7 @@ __host__ __device__ inline void lift(uint64_t value, int bit, const ReversalPara
     }
 }
 
-__device__ void inline reverseCarverSeedGPU(uint64_t carver_seed, int x, int z, ReversalOutput* out) {
-    const ReversalParams params = {carver_seed, x, z};
-
-    int freeBits = __ffs(x | z) - 1;
-    uint64_t c = carver_seed & ((1ULL << freeBits) - 1);
-
-    if (freeBits >= 16) {
-        lift(c, freeBits - 16, &params, out);
-    } 
-    else {
-        for (int increment = 1 << freeBits; c < 65536ULL; c += increment) {
-            lift(c, 0, &params, out);
-        }
-    }
-}
-
-__host__ void inline reverseCarverSeedCPU(uint64_t carver_seed, int x, int z, ReversalOutput* out) {
+__host__ void inline reverseCarverSeed(uint64_t carver_seed, int x, int z, ReversalOutput* out) {
     const ReversalParams params = {carver_seed, x, z};
 
     unsigned long freeBits = 32; 
