@@ -34,7 +34,7 @@ std::vector<Result> carver_step_results;
 std::mutex result_mutex;
 
 void reverse_carver(int x, int z, ReversalOutput& out) {
-    reverseCarverSeed(CARVER_SEED, x, z, &out);
+    reverseCarverSeedCPU(CARVER_SEED, x, z, &out);
 }
 
 void carver_reversal_worker(int x_min, int x_max, int z) {
@@ -58,6 +58,7 @@ constexpr int MAX_WORLDSEED_RESULTS = 64;
 __managed__ int worldseedResultCount = 0;
 __managed__ Result worldseedResults[MAX_WORLDSEED_RESULTS];
 
+extern __device__ int countChests(Xoroshiro*);
 __global__ void bruteforceWorldseeds(const uint64_t structure_seed, const int x, const int z) {
     uint64_t upper16 = blockIdx.x * blockDim.x + threadIdx.x;
     uint64_t worldseed = structure_seed | (upper16 << 48);
