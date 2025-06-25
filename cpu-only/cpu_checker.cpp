@@ -1,5 +1,7 @@
 #include <vector>
 #include <cstdlib>
+#include <cmath>
+#include <cstring>
 #include <iostream>
 #include <functional>
 
@@ -19,7 +21,7 @@ constexpr int BATCH_SIZE = 100;
 constexpr int CHUNKS_ON_AXIS = 60'000'000 / 16;
 constexpr int TASKS_ON_AXIS = CHUNKS_ON_AXIS / BATCH_SIZE;
 constexpr int TASK_COORD_OFFSET = TASKS_ON_AXIS / 2;
-constexpr uint64_t MAX_TASK_ID = (uint64_t)TASKS_ON_AXIS * TASKS_ON_AXIS;
+constexpr uint64_t MAX_TASK_ID = (uint64_t)TASKS_ON_AXIS * TASKS_ON_AXIS + TASKS_ON_AXIS;
 
 // --------------------------------------------------------------------
 // multithreaded carver reversal + worldseed checking
@@ -128,6 +130,8 @@ static void result_process_worker(uint64_t uMin, uint64_t uMax) {
 }
 
 static void processResults(const int thread_count) {
+    if (carver_step_results.empty())
+        return;
     std::vector<std::thread> threads;
 
     const int wu_size = 65536 / thread_count;
@@ -161,7 +165,7 @@ int main(int argc, char* argv[]) {
         std::vector<std::thread> threads;
 
         int subtasks_done = (current_task - task_min) * BATCH_SIZE + current_task_z;
-        fprintf(stderr, "--- progress: %d / %d subtasks done\n", subtasks_done, subtasks_total);
+        fprintf(stderr, "--- progress: %d / %d | carver reversal\n", subtasks_done, subtasks_total);
 
         for (int i = 0; i < thread_count; i++) {
             const int tx = (current_task / TASKS_ON_AXIS) * BATCH_SIZE - TASK_COORD_OFFSET * BATCH_SIZE;
@@ -180,6 +184,7 @@ int main(int argc, char* argv[]) {
             t.join();
         }
         
+        fprintf(stderr, "--- progress: %d / %d | sister seed bruteforce\n", subtasks_done, subtasks_total);
         processResults(thread_count);
     }
 
