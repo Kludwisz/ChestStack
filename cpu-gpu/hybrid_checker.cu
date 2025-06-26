@@ -20,13 +20,13 @@ enough for machines with powerful CPUs and weak GPUs.
 // global program params
 
 constexpr uint64_t CARVER_SEED = 137099342588438ULL;
-constexpr int MIN_CHESTS = 3;
+constexpr int MIN_CHESTS = 4;
 
 constexpr int BATCH_SIZE = 100;
 constexpr int CHUNKS_ON_AXIS = 60'000'000 / 16;
 constexpr int TASKS_ON_AXIS = CHUNKS_ON_AXIS / BATCH_SIZE;
 constexpr int TASK_COORD_OFFSET = TASKS_ON_AXIS / 2;
-constexpr uint64_t MAX_TASK_ID = (uint64_t)TASKS_ON_AXIS * TASKS_ON_AXIS;
+//constexpr uint64_t MAX_TASK_ID = (uint64_t)TASKS_ON_AXIS * TASKS_ON_AXIS;
 
 // --------------------------------------------------------------------
 // multithreaded carver reversal
@@ -40,6 +40,12 @@ struct Result {
 
 std::vector<Result> carver_step_results;
 std::mutex result_mutex;
+
+static bool trial_chamber_can_generate(int x, int z) {
+    int x_in_region = (x%34 + 34) % 34;
+    int z_in_region = (z%34 + 34) % 34;
+    return x_in_region < 22 && z_in_region < 22;
+}
 
 static void reverse_carver(int x, int z, ReversalOutput& out) {
     reverseCarverSeed(CARVER_SEED, x, z, &out);
@@ -86,6 +92,9 @@ static void carver_reversal_worker(int x_min, int x_max, int z) {
 
     for (int x = x_min; x < x_max; ++x) {
         out.resultCount = 0;
+        if (!trial_chamber_can_generate(x + 2, z-1 + 1))
+            continue;
+
         reverse_carver(x, z, out);
         for (int i = 0; i < out.resultCount; i++)
             check_carver_result({out.results[i], x, z-1});
@@ -170,9 +179,11 @@ int main(int argc, char* argv[]) {
         for (int i = 0; i < thread_count; i++) {
             const int tx = (current_task / TASKS_ON_AXIS) * BATCH_SIZE - TASK_COORD_OFFSET * BATCH_SIZE;
             const int tz = (current_task % TASKS_ON_AXIS) * BATCH_SIZE - TASK_COORD_OFFSET * BATCH_SIZE;
-            threads.emplace_back(carver_reversal_worker, tx, tx + BATCH_SIZE, tz + current_task_z);
-            current_task_z++;
+            if (trial_chamber_can_generate(0, current_task_z))
+                threads.emplace_back(carver_reversal_worker, tx, tx + BATCH_SIZE, tz + current_task_z);
+            else i--; // need to run the loop an additional time
 
+            current_task_z++;
             if (current_task_z >= BATCH_SIZE) {
                 current_task_z = 0;
                 current_task++;
