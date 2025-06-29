@@ -94,12 +94,12 @@ __global__ void bruteforceWorldseeds(const uint64_t structure_seed, const int x,
     uint64_t worldseed = structure_seed | (upper16 << 48);
 
     Xoroshiro xr;
-    xSetDecoratorSeed(&xr, worldseed, x<<4, z<<4, 30001);
+    xSetDecoratorSeed(&xr, worldseed, (x+1)<<4, z<<4, 30001);
     int chests = countChests(&xr);
     if (chests >= MIN_CHESTS) {
         int ix = atomicAdd(&worldseedResultCount, 1);
         if (ix < MAX_WORLDSEED_RESULTS)
-            worldseedResults[ix] = {worldseed, x, z};
+            worldseedResults[ix] = {worldseed, x+1, z};
     }
 }
 
@@ -113,7 +113,7 @@ __host__ void launchBruteforce() {
 
 __host__ void processResults() {
     for (int i = 0; i < worldseedResultCount; i++) {
-        printf("%lld  /tp %d 0 %d\n", worldseedResults[i].worldseed, worldseedResults[i].chunk_x*16, worldseedResults[i].chunk_z*16 + 128);
+        printf("%lld  /tp %d 0 %d\n", worldseedResults[i].worldseed, worldseedResults[i].chunk_x*16, worldseedResults[i].chunk_z*16);
     }
 }
 
