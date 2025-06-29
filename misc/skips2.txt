@@ -1,0 +1,230 @@
+
+> Task :classes
+> Task :compileTestJava
+> Task :processTestResources NO-SOURCE
+> Task :testClasses
+
+> Task :NeighborTest.main()
+skip 64
+skipChest
+nextInt(100)
+skip 4
+skipChest
+nextInt(100)
+nextInt(100)
+nextInt(100)
+nextInt(100)
+nextInt(100)
+skip 30
+skipSupport
+skip 4
+nextInt(100)
+skipChest
+skipSupport
+skip 8
+skipChest
+skipChest
+skip 30
+skipSupport
+skip 8
+skipChest
+skipChest
+skipSupport
+skip 8
+skipChest
+skipChest
+skip 30
+skipSupport
+skip 8
+skipChest
+skipChest
+nextInt(100)
+nextInt(100)
+skip 30
+skipSupport
+skip 8
+skipChest
+skipChest
+skipSupport
+skip 8
+skipChest
+processColumnChest
+skip 34
+nextInt(100)
+skipChest
+skipSupport
+skip 8
+skipChest
+skipChest
+skip 47
+nextInt(100)
+nextInt(100)
+nextInt(100)
+nextInt(100)
+nextInt(100)
+nextInt(100)
+skip 30
+skipSupport
+skip 8
+skipChest
+skipChest
+nextInt(100)
+nextInt(100)
+skip 34
+nextInt(100)
+skipChest
+skip 2
+nextInt(100)
+nextInt(100)
+skip 38
+skipSupport
+skip 6
+skipChest
+skipChest
+nextInt(100)
+nextInt(100)
+skip 30
+skipSupport
+skip 6
+processColumnChest
+skipChest
+nextInt(100)
+nextInt(100)
+skip 60
+nextInt(100)
+nextInt(100)
+skipSupport
+skip 6
+skipChest
+skipChest
+skipSupport
+skip 8
+skipChest
+CHEST !!! Pos{x=26, y=-7, z=14}
+skipChest
+skipSupport
+skip 8
+skipChest
+skipChest
+skip 60
+nextInt(100)
+nextInt(100)
+nextInt(100)
+nextInt(100)
+nextInt(100)
+nextInt(100)
+skipSupport
+skip 6
+skipChest
+skipChest
+skip 34
+skipSupport
+skip 8
+skipChest
+processColumnChest
+skipSupport
+skip 8
+skipChest
+skipChest
+skip 30
+skipSupport
+skip 8
+skipChest
+processColumnChest
+skipSupport
+skip 8
+skipChest
+skipChest
+skip 44
+skipChest
+nextInt(100)
+nextInt(100)
+nextInt(100)
+skip 36
+skipChest
+nextInt(100)
+nextInt(100)
+nextInt(100)
+skip 34
+nextInt(100)
+nextInt(100)
+nextInt(100)
+nextInt(100)
+skip 45
+skipSupport
+skip 8
+skipChest
+skipChest
+skipSupport
+skip 8
+skipChest
+skipChest
+nextInt(100)
+nextInt(100)
+skip 40
+skipSupport
+skip 6
+processColumnChest
+skipChest
+nextInt(100)
+nextInt(100)
+skip 66
+nextInt(100)
+nextInt(100)
+nextInt(100)
+nextInt(100)
+nextInt(100)
+nextInt(100)
+nextInt(100)
+nextInt(100)
+skip 30
+skipSupport
+skip 8
+skipChest
+skipChest
+skip 4
+skipChest
+nextInt(100)
+skip 45
+skipSupport
+skip 6
+processColumnChest
+skipChest
+nextInt(100)
+nextInt(100)
+nextInt(100)
+nextInt(100)
+skip 45
+skipSupport
+skip 8
+skipChest
+skipChest
+skipSupport
+skip 8
+skipChest
+skipChest
+nextInt(100)
+nextInt(100)
+skip 70
+skipSupport
+skip 8
+skipChest
+skipChest
+skipSupport
+skip 8
+skipChest
+skipChest
+nextInt(100)
+nextInt(100)
+nextInt(100)
+nextInt(100)
+skip 30
+skipSupport
+skip 6
+processColumnChest
+skipChest
+nextInt(100)
+nextInt(100)
+skip 19
+nextInt(100)
+skipChest

@@ -19,8 +19,8 @@ enough for machines with powerful CPUs and weak GPUs.
 // --------------------------------------------------------------------
 // global program params
 
-constexpr uint64_t CARVER_SEED = 137099342588438ULL;
-constexpr int MIN_CHESTS = 4;
+constexpr uint64_t CARVER_SEED = 190383783165418ULL; //137099342588438ULL;
+constexpr int MIN_CHESTS = 3;
 
 constexpr int BATCH_SIZE = 100;
 constexpr int CHUNKS_ON_AXIS = 60'000'000 / 16;
@@ -52,35 +52,16 @@ static void reverse_carver(int x, int z, ReversalOutput& out) {
 }
 
 static void check_carver_result(Result res) {
-    // test for trial chambers generating in correct position
-    // -3 30 (feature) -> -1 31 (chunk) rotation = 3
-    // rotation = 1 BAD
-    // rotation = 2 BAD
-    // rotation = 0 BAD
-
-    // so we need trial chambers at feature_chunk + (2, 1) with rotation = 3
-
     // check position
-    int tcx = res.chunk_x + 2;
-    int tcz = res.chunk_z + 1;
-    int rx = (int)std::floor(tcx / 34.0);
-    int rz = (int)std::floor(tcz / 34.0);
+    int rx = (int)std::floor(res.chunk_x / 34.0);
+    int rz = (int)std::floor(res.chunk_z / 34.0);
 
     uint64_t rand = 0;
     setRegionSeed(&rand, res.worldseed, rx, rz, 94251327);
     int cx = rx * 34 + nextInt(&rand, 22);
     int cz = rz * 34 + nextInt(&rand, 22);
 
-    if (cx != tcx || cz != tcz)
-        return;
-
-    // check rotation
-    setCarverSeed(&rand, res.worldseed, cx, cz);
-    nextInt(&rand, 21); // skip y
-    int rot = nextInt(&rand, 4);
-    if (rot != 3) 
-        return;
-
+    if (cx == res.chunk_x && cz == res.chunk_z)
     {
         std::lock_guard<std::mutex> lock(result_mutex);
         carver_step_results.push_back(res);
@@ -92,7 +73,7 @@ static void carver_reversal_worker(int x_min, int x_max, int z) {
 
     for (int x = x_min; x < x_max; ++x) {
         out.resultCount = 0;
-        if (!trial_chamber_can_generate(x + 2, z-1 + 1))
+        if (!trial_chamber_can_generate(x, z))
             continue;
 
         reverse_carver(x, z, out);
