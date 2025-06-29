@@ -78,7 +78,7 @@ static void carver_reversal_worker(int x_min, int x_max, int z) {
 
         reverse_carver(x, z, out);
         for (int i = 0; i < out.resultCount; i++)
-            check_carver_result({out.results[i], x, z-1});
+            check_carver_result({out.results[i], x, z});
     }
 }
 
@@ -94,18 +94,18 @@ __global__ void bruteforceWorldseeds(const uint64_t structure_seed, const int x,
     uint64_t worldseed = structure_seed | (upper16 << 48);
 
     Xoroshiro xr;
-    xSetDecoratorSeed(&xr, worldseed, (x+1)<<4, z<<4, 30001);
+    xSetDecoratorSeed(&xr, worldseed, x<<4, z<<4, 30001);
     int chests = countChests(&xr);
     if (chests >= MIN_CHESTS) {
         int ix = atomicAdd(&worldseedResultCount, 1);
         if (ix < MAX_WORLDSEED_RESULTS)
-            worldseedResults[ix] = {worldseed, x+1, z};
+            worldseedResults[ix] = {worldseed, x, z};
     }
 }
 
 __host__ void launchBruteforce() {
     for (auto& result : carver_step_results) {
-        bruteforceWorldseeds <<< 256, 256 >>> (result.worldseed, result.chunk_x, result.chunk_z);
+        bruteforceWorldseeds <<< 256, 256 >>> (result.worldseed, result.chunk_x + 1, result.chunk_z);
     }
     carver_step_results.clear();
     CUDA_CHECK(cudaGetLastError());

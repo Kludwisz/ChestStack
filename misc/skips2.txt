@@ -1,11 +1,4 @@
-
-> Task :classes
-> Task :compileTestJava
-> Task :processTestResources NO-SOURCE
-> Task :testClasses
-
-> Task :NeighborTest.main()
-skip 64
+skip 68
 skipChest
 nextInt(100)
 skip 4
@@ -16,7 +9,6 @@ nextInt(100)
 nextInt(100)
 nextInt(100)
 skip 30
-skipSupport
 skip 4
 nextInt(100)
 skipChest
@@ -28,7 +20,7 @@ skip 30
 skipSupport
 skip 8
 skipChest
-skipChest
+nextInt(100)
 skipSupport
 skip 8
 skipChest
@@ -99,12 +91,11 @@ skipChest
 skipChest
 skipSupport
 skip 8
-skipChest
-CHEST !!! Pos{x=26, y=-7, z=14}
-skipChest
+nextInt(100)
+nextInt(100)
 skipSupport
 skip 8
-skipChest
+nextInt(100)
 skipChest
 skip 60
 nextInt(100)

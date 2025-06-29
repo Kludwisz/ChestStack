@@ -1,11 +1,10 @@
-skip 64
+skip 68
 skipChest
 nextInt(100)
 skip 4
 skipChest
 nextInt(100) x5
 skip 30
-skipSupport
 skip 4
 nextInt(100)
 skipChest
@@ -15,7 +14,8 @@ skipChest x2
 skip 30
 skipSupport
 skip 8
-skipChest x2
+skipChest
+nextInt(100)
 skipSupport
 skip 8
 skipChest x2
@@ -68,10 +68,11 @@ skip 6
 skipChest x2
 skipSupport
 skip 8
-skipChest x2
+nextInt(100) x2
 skipSupport
 skip 8
-skipChest x2
+nextInt(100)
+skipChest
 skip 60
 nextInt(100) x6
 skipSupport
@@ -150,3 +151,8 @@ skip 30
 skipSupport
 skip 6
 processColumnChest
+skipChest
+nextInt(100) x2
+skip 19
+nextInt(100)
+skipChest
