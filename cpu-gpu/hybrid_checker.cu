@@ -20,7 +20,7 @@ enough for machines with powerful CPUs and weak GPUs.
 // global program params
 
 constexpr uint64_t CARVER_SEED = 190383783165418ULL; //137099342588438ULL;
-constexpr int MIN_CHESTS = 4;
+constexpr int MIN_CHESTS = 5;
 
 constexpr int BATCH_SIZE = 100;
 constexpr int CHUNKS_ON_AXIS = 60'000'000 / 16;
@@ -96,7 +96,9 @@ __global__ void bruteforceWorldseeds(const uint64_t structure_seed, const int x,
     Xoroshiro xr;
     xSetDecoratorSeed(&xr, worldseed, x<<4, z<<4, 30001);
     int chests = countChests(&xr);
-    if (chests >= MIN_CHESTS) {
+    xSetDecoratorSeed(&xr, worldseed, x<<4, z<<4, 30001);
+    int chests2 = countChestsWater(&xr);
+    if (chests >= MIN_CHESTS || chests >= MIN_CHESTS) {
         int ix = atomicAdd(&worldseedResultCount, 1);
         if (ix < MAX_WORLDSEED_RESULTS)
             worldseedResults[ix] = {worldseed, x, z};
