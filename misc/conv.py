@@ -3,18 +3,18 @@ def printCommand(txt):
     if 'skipSupport' in txt:
         print('if (xNextIntJ(xrand, 4) != 0) xSkipN(xrand, 2);')
     elif 'skipChest' in txt:
-        print('if (xNextIntJ(xrand, 100) == 0) xSkipN(xrand, 3);')
+        print('CHEST_SKIP;')
     elif 'skipSpiderChest' in txt:
         print('xNextIntJ(xrand, 100);')
     elif 'processColumnChest' in txt:
-        print('if (xNextIntJ(xrand, 100) == 0) xSkipN(xrand, 3); // COLUMN CHEST!')
+        print('if (xNextIntJ(xrand, 100) == 0) CHEST_OP; // COLUMN CHEST!')
     elif 'nextInt(100)' in txt:
         print(f'xNextIntJ(xrand, 100);')
     else:
         print(f'{txt}\n')
 
 
-with open('skips3.txt') as f:
+with open('skips_water.txt') as f:
     lines = [line.strip().split('//')[0].strip() for line in f.readlines()]
 
 for line in lines:
