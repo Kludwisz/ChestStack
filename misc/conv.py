@@ -12,7 +12,7 @@ def printCommand(txt):
         print(f'{txt};')
 
 
-with open('skips2_compressed.txt') as f:
+with open('skips2.txt') as f:
     lines = [line.strip().split('//')[0].strip() for line in f.readlines()]
 
 for line in lines:

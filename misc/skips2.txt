@@ -1,4 +1,5 @@
-skip 68
+skip 64
+skip 4
 skipChest
 nextInt(100)
 skip 4
@@ -41,14 +42,16 @@ skipSupport
 skip 8
 skipChest
 processColumnChest
-skip 34
+skip 30
+skip 4
 nextInt(100)
 skipChest
 skipSupport
 skip 8
 skipChest
 skipChest
-skip 47
+skip 45
+skip 2
 nextInt(100)
 nextInt(100)
 nextInt(100)
@@ -62,7 +65,8 @@ skipChest
 skipChest
 nextInt(100)
 nextInt(100)
-skip 34
+skip 30
+skip 4
 nextInt(100)
 skipChest
 skip 2
@@ -92,7 +96,7 @@ skipChest
 skipSupport
 skip 8
 nextInt(100)
-nextInt(100)
+skipChest
 skipSupport
 skip 8
 nextInt(100)
@@ -126,17 +130,20 @@ skipSupport
 skip 8
 skipChest
 skipChest
-skip 44
+skip 40
+skip 4
 skipChest
 nextInt(100)
 nextInt(100)
 nextInt(100)
-skip 36
+skip 32
+skip 4
 skipChest
 nextInt(100)
 nextInt(100)
 nextInt(100)
-skip 34
+skip 32
+skip 2
 nextInt(100)
 nextInt(100)
 nextInt(100)
@@ -159,7 +166,8 @@ processColumnChest
 skipChest
 nextInt(100)
 nextInt(100)
-skip 66
+skip 64
+skip 2
 nextInt(100)
 nextInt(100)
 nextInt(100)
@@ -213,9 +221,3 @@ skip 30
 skipSupport
 skip 6
 processColumnChest
-skipChest
-nextInt(100)
-nextInt(100)
-skip 19
-nextInt(100)
-skipChest

@@ -206,6 +206,8 @@ __host__ __device__ static inline uint64_t xNextLongJ(Xoroshiro *xr)
 
 __host__ __device__ static inline int xNextIntJ(Xoroshiro *xr, uint32_t n)
 {
+    // if (n == 100)
+    //     printf("xLo = %lld\n", xr->lo);
     int bits, val;
     const int m = n - 1;
 
