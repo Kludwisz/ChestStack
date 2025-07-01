@@ -20,7 +20,7 @@ enough for machines with powerful CPUs and weak GPUs.
 // global program params
 
 constexpr uint64_t CARVER_SEED = 190383783165418ULL; //137099342588438ULL;
-constexpr int MIN_CHESTS = 3;
+constexpr int MIN_CHESTS = 4;
 
 constexpr int BATCH_SIZE = 100;
 constexpr int CHUNKS_ON_AXIS = 60'000'000 / 16;

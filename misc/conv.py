@@ -8,11 +8,13 @@ def printCommand(txt):
         print('xNextIntJ(xrand, 100);')
     elif 'processColumnChest' in txt:
         print('if (xNextIntJ(xrand, 100) == 0) xSkipN(xrand, 3); // COLUMN CHEST!')
+    elif 'nextInt(100)' in txt:
+        print(f'xNextIntJ(xrand, 100);')
     else:
-        print(f'{txt};')
+        print(f'{txt}\n')
 
 
-with open('skips2.txt') as f:
+with open('skips3.txt') as f:
     lines = [line.strip().split('//')[0].strip() for line in f.readlines()]
 
 for line in lines:

@@ -94,8 +94,8 @@ skipChest
 skipChest
 skipSupport
 skip 8
-nextInt(100)
 skipChest
+nextInt(100)
 skipSupport
 skip 8
 nextInt(100)
@@ -107,7 +107,6 @@ nextInt(100)
 nextInt(100)
 nextInt(100)
 nextInt(100)
-skipSupport
 skip 6
 skipChest
 skipChest
