@@ -1,0 +1,49 @@
+plugins {
+    id 'java'
+    id 'application'
+}
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_17
+    targetCompatibility = JavaVersion.VERSION_17
+}
+
+group = 'org.example'
+version = '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+    maven { url "https://maven.seedfinding.com" }
+    maven { url "https://www.jitpack.io" }
+}
+
+dependencies {
+    implementation('com.seedfinding:mc_math:1.171.0') { transitive = false }
+    implementation('com.seedfinding:mc_seed:1.171.1') { transitive = false }
+    implementation('com.seedfinding:mc_core:1.210.0') { transitive = false }
+    implementation('com.seedfinding:mc_noise:1.171.1') { transitive = false }
+    implementation('com.seedfinding:mc_reversal:1.171.1') { transitive = false }
+    implementation('com.seedfinding:mc_biome:1.171.1') { transitive = false }
+    implementation('com.seedfinding:mc_terrain:1.171.1') { transitive = false }
+    implementation('com.seedfinding:mc_feature:1.171.9') { transitive = false }
+
+    implementation('com.github.kludwisz:MineshaftLoot:1.6.7')
+    implementation('com.github.kludwisz:TrialChamberGenerator:v1.3-mc_1.21.4')
+}
+
+test {
+    useJUnitPlatform()
+}
+
+mainClassName = 'main.MainFindMineshaftAndTrialChamberLayout'
+
+jar {
+    manifest {
+        attributes 'Main-Class': mainClassName
+    }
+
+    from {
+        configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) }
+    }
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+}

@@ -1,0 +1,47 @@
+190383783165418
+chest stack: 7
+chests ranging from -15 to 10
+/tp 29 40 4
+BlockBox{minX=21, minY=-25, minZ=-1, maxX=41, maxY=11, maxZ=20}
+
+207636098294707
+chest stack: 7
+chests ranging from 12 to 39
+/tp 28 40 5
+BlockBox{minX=21, minY=-31, minZ=-1, maxX=41, maxY=5, maxZ=20}
+
+5550852533265
+chest stack: 7
+chests ranging from -20 to 4
+/tp 25 40 11
+BlockBox{minX=21, minY=-27, minZ=-1, maxX=41, maxY=9, maxZ=20}
+
+109676216902838
+chest stack: 7
+chests ranging from -38 to -9
+/tp -7 40 37
+BlockBox{minX=-20, minY=-35, minZ=21, maxX=1, maxY=1, maxZ=41}
+
+253532595323487
+chest stack: 7
+chests ranging from -45 to -21
+/tp 31 40 7
+BlockBox{minX=21, minY=-27, minZ=-1, maxX=41, maxY=9, maxZ=20}
+
+115678872357804
+chest stack: 7
+chests ranging from -51 to -28
+/tp 4 40 -37
+BlockBox{minX=-1, minY=-21, minZ=-41, maxX=20, maxY=15, maxZ=-21}
+
+20126156555362
+chest stack: 7
+chests ranging from 2 to 24
+/tp 33 40 4
+BlockBox{minX=21, minY=-25, minZ=-1, maxX=41, maxY=11, maxZ=20}
+
+163127629613485
+chest stack: 7
+chests ranging from 1 to 25
+/tp 9 40 -24
+BlockBox{minX=-1, minY=-24, minZ=-41, maxX=20, maxY=12, maxZ=-21}

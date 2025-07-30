@@ -1,0 +1,395 @@
+216180399956447
+chest stack: 7
+/tp -11 40 0
+
+120563164546677
+chest stack: 7
+/tp -19 40 -12
+
+220172630654161
+chest stack: 7
+/tp 10 40 -42
+
+209984965648393
+chest stack: 7
+/tp -2 40 -2
+
+92597959132560
+chest stack: 7
+/tp -19 40 15
+
+6813878449479
+chest stack: 7
+/tp 36 40 8
+
+193537693334136
+chest stack: 7
+/tp 16 40 -14
+
+162467349417302
+chest stack: 7
+/tp 14 40 31
+
+278318504994635
+chest stack: 7
+/tp 4 40 24
+
+72328047110065
+chest stack: 7
+/tp -24 40 -9
+
+210272226856682
+chest stack: 7
+/tp 5 40 -13
+
+676451222849
+chest stack: 7
+/tp -25 40 -35
+
+48160653537348
+chest stack: 7
+/tp 12 40 -16
+
+224032234975140
+chest stack: 7
+/tp -48 40 5
+
+231745321106549
+chest stack: 7
+/tp 26 40 13
+
+147105966810257
+chest stack: 7
+/tp -30 40 -2
+
+41263760900472
+chest stack: 8
+/tp 20 40 -26
+
+272944002465770
+chest stack: 7
+/tp 4 40 18
+
+243683353424828
+chest stack: 7
+/tp 16 40 -7
+
+24346437812055
+chest stack: 7
+/tp -19 40 36
+
+76239664121370
+chest stack: 7
+/tp 14 40 -34
+
+17556522171528
+chest stack: 7
+/tp 4 40 6
+
+148106239732913
+chest stack: 7
+/tp 17 40 -33
+
+212177125635807
+chest stack: 7
+/tp -18 40 16
+
+5000297181514
+chest stack: 7
+/tp 25 40 8
+
+209187894021980
+chest stack: 7
+/tp 21 40 7
+
+240250926032158
+chest stack: 7
+/tp 12 40 -3
+
+36528738650622
+chest stack: 7
+/tp 29 40 10
+
+66692125410964
+chest stack: 7
+/tp 19 40 -11
+
+58472739899566
+chest stack: 7
+/tp 17 40 -22
+
+225003875664397
+chest stack: 7
+/tp 31 40 -17
+
+190383783165418
+chest stack: 7
+/tp 29 40 4
+
+207636098294707
+chest stack: 7
+/tp 28 40 5
+
+35781001652232
+chest stack: 7
+/tp -3 40 -37
+
+277442870689667
+chest stack: 7
+/tp -1 40 -15
+
+25222200440687
+chest stack: 7
+/tp 8 40 51
+
+36340675084333
+chest stack: 7
+/tp -2 40 14
+
+164140906562627
+chest stack: 7
+/tp 11 40 -16
+
+217884136729082
+chest stack: 7
+/tp 26 40 22
+
+245824698516518
+chest stack: 7
+/tp 28 40 16
+
+31721936972591
+chest stack: 7
+/tp 21 40 18
+
+187542496686884
+chest stack: 7
+/tp 14 40 19
+
+10144329302610
+chest stack: 7
+/tp 15 40 38
+
+162216231121753
+chest stack: 7
+/tp 28 40 15
+
+273468385478968
+chest stack: 7
+/tp 21 40 44
+
+232030562423927
+chest stack: 7
+/tp 26 40 32
+
+38794326984525
+chest stack: 7
+/tp 20 40 -11
+
+125761832903577
+chest stack: 7
+/tp 20 40 17
+
+263513666246730
+chest stack: 7
+/tp 0 40 -2
+
+5550852533265
+chest stack: 7
+/tp 25 40 11
+
+249939052914311
+chest stack: 7
+/tp -40 40 -12
+
+233357919596755
+chest stack: 7
+/tp 25 40 37
+
+237424036518167
+chest stack: 7
+/tp -10 40 -16
+
+53871761085615
+chest stack: 7
+/tp 1 40 -26
+
+89454215332158
+chest stack: 7
+/tp 13 40 5
+
+63272160321932
+chest stack: 7
+/tp -8 40 -27
+
+260493237225423
+chest stack: 7
+/tp -16 40 6
+
+273690213574060
+chest stack: 7
+/tp 21 40 7
+
+249650090006956
+chest stack: 7
+/tp 9 40 -25
+
+137870622954855
+chest stack: 7
+/tp 8 40 18
+
+164889272270127
+chest stack: 7
+/tp -20 40 5
+
+242991249327979
+chest stack: 7
+/tp 28 40 -3
+
+174418843845766
+chest stack: 7
+/tp -4 40 -8
+
+38895026842494
+chest stack: 7
+/tp -10 40 -13
+
+109763144007558
+chest stack: 7
+/tp -2 40 25
+
+189465287442717
+chest stack: 7
+/tp 8 40 -14
+
+271766260586736
+chest stack: 7
+/tp 36 40 22
+
+210232627607785
+chest stack: 7
+/tp 31 40 8
+
+72843726041909
+chest stack: 7
+/tp 12 40 -40
+
+136317744220146
+chest stack: 7
+/tp 23 40 -10
+
+146740910928985
+chest stack: 7
+/tp 17 40 18
+
+32494886049059
+chest stack: 7
+/tp 52 40 26
+
+75362023210297
+chest stack: 7
+/tp 12 40 -23
+
+44145882748338
+chest stack: 7
+/tp -25 40 -10
+
+109439636492162
+chest stack: 7
+/tp 10 40 -20
+
+146861796863417
+chest stack: 7
+/tp 31 40 -15
+
+141852834258989
+chest stack: 7
+/tp 18 40 8
+
+224186542672630
+chest stack: 7
+/tp 28 40 -15
+
+112329240241082
+chest stack: 7
+/tp -25 40 16
+
+4688437696340
+chest stack: 7
+/tp 22 40 -4
+
+109676216902838
+chest stack: 7
+/tp -7 40 37
+
+95539790924999
+chest stack: 7
+/tp 4 40 -17
+
+199987511010187
+chest stack: 8
+/tp 25 40 15
+
+217684556689797
+chest stack: 7
+/tp 6 40 -5
+
+81333746137642
+chest stack: 7
+/tp -9 40 20
+
+49706004474916
+chest stack: 7
+/tp -8 40 0
+
+115241381130013
+chest stack: 7
+/tp 12 40 -6
+
+165449523529705
+chest stack: 7
+/tp 2 40 -1
+
+55001000287690
+chest stack: 7
+/tp 37 40 9
+
+59521453014753
+chest stack: 7
+/tp 8 40 13
+
+7784993668626
+chest stack: 7
+/tp 0 40 -11
+
+11404674835731
+chest stack: 7
+/tp -32 40 -3
+
+102616033482780
+chest stack: 7
+/tp 6 40 -7
+
+171691333016185
+chest stack: 7
+/tp 25 40 28
+
+21790762656256
+chest stack: 7
+/tp 20 40 22
+
+8405812399430
+chest stack: 7
+/tp -5 40 23
+
+156653969178106
+chest stack: 7
+/tp 0 40 -4
+
+135720626828707
+chest stack: 7
+/tp 23 40 -2
+
+83952477664057
+chest stack: 7
+/tp -15 40 -22

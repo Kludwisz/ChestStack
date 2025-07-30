@@ -1,0 +1,33 @@
+199987511010187
+chest stack: 8
+/tp 25 40 15
+31 y diff chests
+
+41263760900472
+chest stack: 8
+/tp 20 40 -26
+has spider corridor D:
+
+85640559756445
+chest stack: 8
+/tp 25 40 -9
+has spider corridor D:
+
+137099342588438
+chest stack: 8
+/tp 7 40 -15
+27 y diff chests
+
+112860586070383
+chest stack: 8
+/tp 14 40 9
+spoder D: D: D:
+
+38538384446405
+chest stack: 8
+/tp 0 40 -11
+28 y diff chests
+
+7909498874208
+chest stack: 8
+/tp 44 40 31
